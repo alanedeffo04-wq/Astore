@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmation de commande – ASTORE</title>
+  <meta name="description" content="Confirmation et ticket de votre commande ASTORE.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="confirmation" data-wait-data>
+
+<div id="site-header"></div>
+
+<main class="wrap page narrow">
+
+  <p class="state" id="conf-loading">Chargement de votre commande…</p>
+  <div class="state" id="conf-error" hidden>
+    <h1>Commande introuvable</h1>
+    <p>Nous n’avons pas pu afficher cette commande. Utilisez la page de suivi avec votre référence et votre téléphone.</p>
+    <a class="btn btn-primary" href="suivi.html">Suivre ma commande</a>
+  </div>
+
+  <article class="ticket" id="ticket" hidden>
+    <header class="ticket-head">
+      <img src="logo.png" alt="ASTORE" height="38">
+      <div>
+        <h1>Merci pour votre commande !</h1>
+        <p class="muted">Votre commande a bien été enregistrée.</p>
+      </div>
+    </header>
+
+    <div class="ticket-ref">
+      <span>Référence de commande</span>
+      <strong class="mono" id="t-ref"></strong>
+    </div>
+
+    <p class="badge badge--demo" id="t-demo" hidden>Paiement simulé avec succès (démonstration)</p>
+
+    <dl class="ticket-meta">
+      <div><dt>Date</dt><dd id="t-date"></dd></div>
+      <div><dt>Statut de la commande</dt><dd id="t-status"></dd></div>
+      <div><dt>Moyen de paiement</dt><dd id="t-method"></dd></div>
+      <div id="t-tx-row" hidden><dt>Transaction (démonstration)</dt><dd class="mono" id="t-tx"></dd></div>
+    </dl>
+
+    <section class="ticket-section">
+      <h2>Produits commandés</h2>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr><th>Produit</th><th class="num">Qté</th><th class="num">Prix unitaire</th><th class="num">Total</th></tr>
+          </thead>
+          <tbody id="t-items"></tbody>
+        </table>
+      </div>
+      <dl class="totals">
+        <div><dt>Sous-total</dt><dd id="t-subtotal"></dd></div>
+        <div><dt>Livraison</dt><dd id="t-delivery-fee"></dd></div>
+        <div class="is-total"><dt>Total</dt><dd id="t-total"></dd></div>
+      </dl>
+    </section>
+
+    <section class="ticket-section">
+      <h2>Livraison</h2>
+      <address class="ticket-address" id="t-address"></address>
+    </section>
+
+    <p class="note" id="t-note"></p>
+
+    <div class="ticket-actions">
+      <button class="btn btn-primary" type="button" id="t-pdf">Télécharger le ticket PDF</button>
+      <a class="btn btn-ghost" id="t-track" href="suivi.html">Suivre ma commande</a>
+      <a class="btn btn-ghost" href="index.html">Retour à l’accueil</a>
+    </div>
+  </article>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="config.js"></script>
+<script src="images.js"></script>
+<script src="script.js"></script>
+<script src="confirmation.js"></script>
+</body>
+</html>

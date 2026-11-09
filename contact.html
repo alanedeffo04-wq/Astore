@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact – ASTORE</title>
+  <meta name="description" content="Contactez ASTORE par WhatsApp, téléphone ou email.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="contact">
+
+<div id="site-header"></div>
+
+<main class="wrap page">
+  <header class="page-head">
+    <h1>Contact</h1>
+    <p class="muted">Une question sur un produit, une livraison ou une commande ?</p>
+  </header>
+
+  <div class="contact-layout">
+
+    <div class="contact-cards">
+      <div class="info-card">
+        <h2>WhatsApp</h2>
+        <p class="muted" id="c-wa-text">Le numéro sera affiché dès qu’il sera renseigné.</p>
+        <a class="btn btn-wa" id="c-wa" href="#">Écrire sur WhatsApp</a>
+      </div>
+      <div class="info-card">
+        <h2>Téléphone</h2>
+        <p id="c-phone" class="muted">À renseigner</p>
+      </div>
+      <div class="info-card">
+        <h2>Email</h2>
+        <p id="c-email" class="muted">À renseigner</p>
+      </div>
+      <div class="info-card">
+        <h2>Adresse</h2>
+        <p id="c-address" class="muted">À renseigner</p>
+      </div>
+    </div>
+
+    <form class="panel" id="contact-form" novalidate>
+      <h2>Envoyer un message</h2>
+      <label class="field">
+        <span>Votre nom</span>
+        <input class="input" name="name" type="text" required autocomplete="name">
+      </label>
+      <label class="field">
+        <span>Votre message</span>
+        <textarea class="input" name="message" rows="5" required></textarea>
+      </label>
+      <p class="form-error" id="contact-error" role="alert" hidden></p>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit" data-channel="whatsapp">Envoyer par WhatsApp</button>
+        <button class="btn btn-ghost" type="submit" data-channel="email">Envoyer par email</button>
+      </div>
+      <p class="note">Votre message s’ouvre dans WhatsApp ou dans votre messagerie : c’est vous qui l’envoyez.</p>
+    </form>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="images.js"></script>
+<script src="script.js"></script>
+<script src="contact.js"></script>
+</body>
+</html>

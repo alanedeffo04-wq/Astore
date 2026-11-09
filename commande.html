@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finaliser la commande – ASTORE</title>
+  <meta name="description" content="Renseignez votre livraison et choisissez votre moyen de paiement.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="commande" data-wait-data>
+
+<div id="site-header"></div>
+
+<main class="wrap page">
+  <header class="page-head">
+    <h1>Finaliser la commande</h1>
+    <ol class="stepper" aria-label="Étapes">
+      <li class="is-current">Livraison et paiement</li>
+      <li>Confirmation</li>
+    </ol>
+  </header>
+
+  <div class="checkout" id="checkout">
+
+    <form class="checkout-form" id="order-form" novalidate>
+
+      <section class="panel">
+        <h2>Vos informations</h2>
+        <div class="field-grid">
+          <label class="field span-2">
+            <span>Nom complet</span>
+            <input class="input" name="name" type="text" required autocomplete="name">
+          </label>
+          <label class="field">
+            <span>Téléphone</span>
+            <input class="input" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="6 XX XX XX XX">
+          </label>
+          <label class="field">
+            <span>WhatsApp <em class="opt">si différent</em></span>
+            <input class="input" name="whatsapp" type="tel" inputmode="tel">
+          </label>
+          <label class="field span-2">
+            <span>Email <em class="opt">facultatif</em></span>
+            <input class="input" name="email" type="email" autocomplete="email">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Livraison</h2>
+        <div class="field-grid">
+          <label class="field">
+            <span>Quartier</span>
+            <input class="input" name="district" type="text" required>
+          </label>
+          <label class="field">
+            <span>Zone de livraison</span>
+            <select class="input" name="zone" id="zone" required>
+              <option value="">Choisir une zone</option>
+            </select>
+          </label>
+          <label class="field span-2">
+            <span>Adresse de livraison</span>
+            <input class="input" name="address" type="text" required autocomplete="street-address">
+          </label>
+          <label class="field span-2" id="destination-field" hidden>
+            <span>Destination de l’expédition</span>
+            <input class="input" name="destination" type="text">
+            <small class="hint">Les frais d’expédition vous seront communiqués après vérification.</small>
+          </label>
+          <label class="field span-2">
+            <span>Informations complémentaires <em class="opt">facultatif</em></span>
+            <textarea class="input" name="notes" rows="3"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Paiement</h2>
+        <p class="muted">Choisissez votre moyen de paiement.</p>
+
+        <div class="pay-options" role="radiogroup" aria-label="Moyen de paiement">
+          <label class="pay-tile">
+            <input type="radio" name="payment" value="orange_money" required>
+            <span class="pay-box">
+              <img src="orange-money.png" alt="">
+              <span class="pay-name">Orange Money</span>
+            </span>
+          </label>
+          <label class="pay-tile">
+            <input type="radio" name="payment" value="mtn_momo">
+            <span class="pay-box">
+              <img src="mtn-money.png" alt="">
+              <span class="pay-name">MTN Mobile Money</span>
+            </span>
+          </label>
+        </div>
+
+        <p class="demo-note" id="demo-note" hidden>Mode démonstration : le paiement est simulé, aucun argent n’est prélevé.</p>
+      </section>
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-lg" type="submit" id="submit-btn">Payer maintenant</button>
+    </form>
+
+    <aside class="summary" aria-label="Récapitulatif de la commande">
+      <h2>Votre commande</h2>
+      <ul class="summary-lines" id="summary-lines"></ul>
+      <dl class="summary-rows">
+        <div><dt>Sous-total</dt><dd id="s-subtotal">—</dd></div>
+        <div><dt>Livraison</dt><dd id="s-delivery">À choisir</dd></div>
+        <div class="is-total"><dt>Total</dt><dd id="s-total">—</dd></div>
+      </dl>
+      <p class="note" id="s-note" hidden></p>
+    </aside>
+  </div>
+
+  <div class="empty-state" id="checkout-empty" hidden>
+    <h2>Votre panier est vide</h2>
+    <p>Ajoutez des produits avant de passer commande.</p>
+    <a class="btn btn-primary" href="catalogue.html">Voir le catalogue</a>
+  </div>
+</main>
+
+<!-- Fenêtre de simulation du paiement -->
+<div class="modal" id="pay-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+
+    <div class="pm-step" id="pm-confirm">
+      <img class="pm-logo" id="pm-logo" src="" alt="">
+      <h2 id="pm-title">Confirmer le paiement</h2>
+      <dl class="pm-rows">
+        <div><dt>Moyen de paiement</dt><dd id="pm-method"></dd></div>
+        <div><dt>Montant à payer</dt><dd id="pm-amount"></dd></div>
+      </dl>
+      <label class="field">
+        <span>Numéro utilisé pour le paiement</span>
+        <input class="input" id="pm-phone" type="tel" inputmode="tel">
+      </label>
+      <p class="demo-note">Simulation : aucun code PIN n’est demandé et aucun argent n’est prélevé.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" type="button" id="pm-cancel">Annuler</button>
+        <button class="btn btn-primary" type="button" id="pm-confirm-btn">Confirmer le paiement</button>
+      </div>
+    </div>
+
+    <div class="pm-step" id="pm-processing" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p id="pm-status" aria-live="polite">Connexion au service de paiement…</p>
+    </div>
+
+    <div class="pm-step" id="pm-success" hidden>
+      <div class="check-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h2>Paiement effectué avec succès !</h2>
+      <p class="muted">Référence de transaction (démonstration) : <strong class="mono" id="pm-tx"></strong></p>
+    </div>
+
+    <div class="pm-step" id="pm-fail" hidden>
+      <h2>La commande n’a pas pu être enregistrée</h2>
+      <p class="form-error" id="pm-fail-text"></p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" id="pm-close">Fermer</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="images.js"></script>
+<script src="script.js"></script>
+<script src="commande.js"></script>
+</body>
+</html>

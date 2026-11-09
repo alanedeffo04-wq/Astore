@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suivi de commande – ASTORE</title>
+  <meta name="description" content="Suivez votre commande ASTORE avec sa référence et votre numéro de téléphone.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="suivi">
+
+<div id="site-header"></div>
+
+<main class="wrap page narrow">
+  <header class="page-head">
+    <h1>Suivre ma commande</h1>
+    <p class="muted">Saisissez la référence reçue à la commande et le numéro de téléphone utilisé.</p>
+  </header>
+
+  <form class="panel" id="track-form" novalidate>
+    <label class="field">
+      <span>Référence de commande</span>
+      <input class="input mono" name="reference" type="text" placeholder="AST-2026-000128" required autocapitalize="characters" autocomplete="off">
+    </label>
+    <label class="field">
+      <span>Numéro de téléphone</span>
+      <input class="input" name="phone" type="tel" required inputmode="tel" autocomplete="tel">
+    </label>
+    <p class="form-error" id="track-error" role="alert" hidden></p>
+    <button class="btn btn-primary" type="submit" id="track-btn">Suivre ma commande</button>
+  </form>
+
+  <section class="result" id="track-result" hidden>
+    <header class="result-head">
+      <h2 class="mono" id="r-ref"></h2>
+      <p class="badge" id="r-status"></p>
+    </header>
+
+    <p class="badge badge--demo" id="r-demo" hidden>Commande de démonstration : paiement simulé</p>
+
+    <ol class="timeline" id="timeline">
+      <li data-step="received">Commande reçue</li>
+      <li data-step="payment_check">Paiement à vérifier</li>
+      <li data-step="payment_ok">Paiement confirmé</li>
+      <li data-step="preparing">Préparation</li>
+      <li data-step="delivering">En livraison</li>
+      <li data-step="delivered">Livrée</li>
+    </ol>
+    <p class="note" id="r-cancelled" hidden>Cette commande a été annulée.</p>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Produit</th><th class="num">Qté</th><th class="num">Total</th></tr>
+        </thead>
+        <tbody id="r-items"></tbody>
+      </table>
+    </div>
+    <dl class="totals">
+      <div><dt>Sous-total</dt><dd id="r-subtotal"></dd></div>
+      <div><dt>Livraison</dt><dd id="r-fee"></dd></div>
+      <div class="is-total"><dt>Total</dt><dd id="r-total"></dd></div>
+    </dl>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="images.js"></script>
+<script src="script.js"></script>
+<script src="suivi.js"></script>
+</body>
+</html>

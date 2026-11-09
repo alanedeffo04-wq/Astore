@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panier – ASTORE</title>
+  <meta name="description" content="Votre panier ASTORE.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="panier">
+
+<div id="site-header"></div>
+
+<main class="wrap page">
+  <header class="page-head">
+    <h1>Votre panier</h1>
+  </header>
+
+  <div class="cart" id="cart" hidden>
+    <ul class="cart-lines" id="cart-lines"></ul>
+
+    <aside class="summary" aria-label="Récapitulatif">
+      <h2>Récapitulatif</h2>
+      <dl class="summary-rows">
+        <div><dt>Sous-total</dt><dd id="sum-subtotal">—</dd></div>
+        <div><dt>Livraison</dt><dd>Calculée à la commande</dd></div>
+      </dl>
+      <p class="note">Les prix et la disponibilité sont vérifiés à la validation de la commande.</p>
+      <a class="btn btn-primary btn-lg btn-block" href="commande.html">Passer commande</a>
+      <a class="btn btn-ghost btn-block" href="catalogue.html">Continuer mes achats</a>
+    </aside>
+  </div>
+
+  <div class="empty-state" id="cart-empty" hidden>
+    <h2>Votre panier est vide</h2>
+    <p>Ajoutez des produits depuis le catalogue pour commencer.</p>
+    <a class="btn btn-primary" href="catalogue.html">Voir le catalogue</a>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="images.js"></script>
+<script src="script.js"></script>
+<script src="panier.js"></script>
+</body>
+</html>

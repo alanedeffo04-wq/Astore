@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catalogue – ASTORE</title>
+  <meta name="description" content="Tous les produits ASTORE : téléphones, ordinateurs, audio, chargeurs, power banks et accessoires.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="catalogue" data-wait-data>
+
+<div id="site-header"></div>
+
+<main class="wrap page">
+  <header class="page-head">
+    <h1>Catalogue</h1>
+    <p class="muted" id="result-count" aria-live="polite"></p>
+  </header>
+
+  <div class="catalogue">
+
+    <!-- Filtres : colonne sur ordinateur, tiroir sur mobile -->
+    <aside class="filters" id="filters" aria-label="Filtres">
+      <div class="filters-head">
+        <h2>Filtres</h2>
+        <button class="text-btn" type="button" id="filters-reset">Réinitialiser</button>
+        <button class="icon-btn filters-close" type="button" id="filters-close" aria-label="Fermer les filtres">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <form id="filters-form" novalidate>
+        <fieldset class="filter-group">
+          <legend>Recherche</legend>
+          <input class="input" type="search" id="f-q" placeholder="Nom, marque, catégorie" autocomplete="off">
+          <ul class="suggest" id="f-suggest"></ul>
+        </fieldset>
+
+        <fieldset class="filter-group">
+          <legend>Catégorie</legend>
+          <div class="check-list" id="f-categories"></div>
+        </fieldset>
+
+        <fieldset class="filter-group">
+          <legend>Marque</legend>
+          <div class="check-list" id="f-brands"></div>
+        </fieldset>
+
+        <fieldset class="filter-group">
+          <legend>Prix (FCFA)</legend>
+          <div class="range">
+            <input class="input" type="number" id="f-min" placeholder="Min" min="0" inputmode="numeric" aria-label="Prix minimum">
+            <input class="input" type="number" id="f-max" placeholder="Max" min="0" inputmode="numeric" aria-label="Prix maximum">
+          </div>
+        </fieldset>
+
+        <fieldset class="filter-group">
+          <legend>Disponibilité</legend>
+          <label class="check"><input type="checkbox" id="f-stock"><span>En stock uniquement</span></label>
+        </fieldset>
+      </form>
+    </aside>
+
+    <section class="results">
+      <div class="toolbar">
+        <button class="btn btn-ghost btn-sm filters-open" type="button" id="filters-open">Filtres</button>
+        <label class="sort">
+          <span>Trier par</span>
+          <select class="input" id="f-sort">
+            <option value="populaire">Popularité</option>
+            <option value="nouveautes">Nouveautés</option>
+            <option value="prix-asc">Prix croissant</option>
+            <option value="prix-desc">Prix décroissant</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="product-grid" id="catalogue-grid" aria-live="polite"></div>
+
+      <div class="empty-state" id="empty" hidden>
+        <h2>Aucun produit ne correspond</h2>
+        <p>Modifiez votre recherche ou retirez certains filtres.</p>
+        <button class="btn btn-primary" type="button" id="empty-reset">Réinitialiser les filtres</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="images.js"></script>
+<script src="script.js"></script>
+<script src="catalogue.js"></script>
+</body>
+</html>
