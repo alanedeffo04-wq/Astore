@@ -15,6 +15,23 @@
 
 <div id="site-header"></div>
 
+<section class="panel" id="verify-panel">
+    <h2>Vérifier une facture</h2>
+    <p class="muted small">Chaque facture ASTORE porte un numéro unique et un code de vérification.</p>
+    <form class="verify-form" id="verify-form" novalidate>
+      <label class="field">
+        <span>Numéro de facture</span>
+        <input class="input mono" name="invoice" type="text" placeholder="FAC-2026-000045" autocapitalize="characters" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Code de vérification</span>
+        <input class="input mono" name="code" type="text" placeholder="A7K2-9QXM" autocapitalize="characters" autocomplete="off">
+      </label>
+      <p class="form-error" id="verify-error" role="alert" hidden></p>
+      <p class="verify-ok" id="verify-ok" role="status" hidden></p>
+      <button class="btn btn-ghost" type="submit">Vérifier</button>
+    </form>
+  </section>
 <main class="wrap page narrow">
   <header class="page-head">
     <h1>Suivre ma commande</h1>
