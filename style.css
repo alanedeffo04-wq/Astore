@@ -223,7 +223,7 @@ html.has-preloader .hero-inner > * { animation: none; opacity: 0; }
 .pcard-media img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 12px rgba(10, 31, 61, .14)); transition: transform .7s var(--ease); }
 .pcard-body { display: flex; flex: 1; flex-direction: column; gap: .2rem; padding: .65rem .7rem .75rem; }
 .pcard-brand { font: 500 .58rem/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pcard-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: .88rem; line-height: 1.25; letter-spacing: -.015em; overflow-wrap: anywhere; }
+.pcard-title { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: .88rem; line-height: 1.25; letter-spacing: -.015em; overflow-wrap: anywhere; }
 .pcard-title a { text-decoration: none; }
 .pcard-price { font-size: .93rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .pcard-price s { display: block; font-size: .72rem; font-weight: 400; color: var(--ink-3); }
